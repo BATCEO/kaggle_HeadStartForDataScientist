@@ -1314,8 +1314,9 @@ Accuracy with **Dession trees**                  - 83.75%
 Accuracy with **Radial Support vector Machine**  - 81.92%  
 Accuracy with **lasso-ridge regression**         - 81.90%  
 Accuracy with **Linear Support vector Machine**  - 81.36%  
-Accuracy with **Logistic Regression**            - 81.36%                                                                                                                                                                     
-问：哇 随机森林可以达到84.03%的准确率  
+Accuracy with **Logistic Regression**            - 81.36%                                                                              
+
+问：哇 随机森林可以达到84.03%的准确率    
 答：嗯                                                                                                                                                                                                                                                            
 问：非常感谢你 James            
 答：不客气  
