@@ -547,7 +547,7 @@ ggplot(full %>% filter(set=="train") %>% na.omit, aes(`FamilySize`, fill=Survive
 <img src="/img/11.png"></img>
 
                                                                                                                                           
-## 变量与存活率之间的关系
+## 变量与存活人数之间的关系
 
 #### Pclass {-}
 ```r
