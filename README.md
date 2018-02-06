@@ -170,14 +170,14 @@ full <- rbind(train, test)
 问：在数据科学下进行了哪些操作？  
 答：这是所有的观点  
 <center><img src="https://doubleclix.files.wordpress.com/2012/12/data-science-02.jpg"></center>
-	这个也给了一些清晰的观点  
+这个也给了一些清晰的观点  
 <center><img src="https://cdn-images-1.medium.com/max/1600/1*2T5rbjOBGVFdSvtlhCqlNg.png"></center>
                                                                           
 问：这看起来不错，把工具和语言都显示出来了  
 答：在这里我们将使用R语言做处理                                                                           
 
                                                                                                                          
-#### 在此之前，我们需要一个数据检查 - 探索性分析（EDA） 数据预处理
+### 在此之前，我们需要一个数据检查 - 探索性分析（EDA） 
 1. 检查数据集的疏散  
 2. 数据集的维度  
 3. 列名  
@@ -205,10 +205,10 @@ missing_values <- gather(missing_values, key="feature", value="missing_pct") #ga
 missing_values %>%
   ggplot(aes(x=reorder(feature,-missing_pct),y=missing_pct)) +   #reorder 重新排序  默认的将第一个参数作为分类变量处理，将第二个变量重新排序 就是先分类 再排序
   geom_bar(stat="identity",fill="red")+     #geom_bar 画条形图
-  coord_flip()+theme_bw()    #coord_flip()  旋转横纵坐标  横坐标变为纵坐标 纵变横   theme_bw() 添加一个坐标的主题样式
-
+  coord_flip()+theme_bw()    #coord_flip()  旋转横纵坐标  横坐标变为纵坐标 纵变横   theme_bw() 添加一个坐标的主题样式
+```
 <img src="/img/1.png"></img>
-
+```r
 #对缺失值有用的数据质量函数
 #检查 一个数据集df的某一列colname的类型  返回列的属性列表(列名，类型，总个数，缺失值个数，numInfinite，平均值，最小值，最大值)
 checkColumn = function(df,colname){
@@ -236,9 +236,9 @@ checkAllCols = function(df){
 #属性列表可视化
 library(DT)
 datatable(checkAllCols(full), style="bootstrap", class="table-condensed", options = list(dom = 'tp',scrollX = TRUE))
-
+```
 <img src="/img/1-1.png"></img>
-
+```r
 #map_dbl返回一个与输入长度相同的向量。
 #round(x, n) x的约数 精确到n位
 miss_pct <- map_dbl(full, function(x) { round((sum(is.na(x)) / length(x)) * 100, 1) })  #缺失值比率
@@ -257,7 +257,7 @@ data.frame(miss=miss_pct, var=names(miss_pct), row.names=NULL) %>%
 答：该过程试图从数据中现有的原始特征创建额外的相关特征，并提高学习算法的预测能力。详情查看上面这个[网址](https://github.com/bobbbbbi/Machine-learning-Feature-engineering-techniques)
 
 
-### 数据操作                                                                                  
+## 数据操作  数据预处理                                                                           
 问：我们已经了解了我们的数据集吧  
 答：然后我们还需要做一些数据的处理  
                                     
@@ -375,8 +375,8 @@ full$ticket.size[full$ticket.unique >= 5]   <- 'Big'
 
 
 
-### 独立的变量/目标
-
+## 独立的变量/目标
+#查看每个字段与存活率之间的关系  
 #### Survival
 #--变量 Survived 被标记为Bernoulli trial，其中乘客或机组成员的存活值被编码为1.在训练集的观察值中，大约38％的乘客和乘员幸存了下来。
 ```r
@@ -412,7 +412,7 @@ kable(crude_summary, caption="2x2 Contingency Table on Survival.", format="markd
 * 因变量/预测因子的关系  
 * 存活率与各个变量之间的关系  
 
-#### Pclass {-} 关系
+#### Pclass {-} 与存活率之间关系
 ```r
 ggplot(full %>% filter(set=="train"), aes(Pclass, fill=Survived)) +
   geom_bar(position = "fill") +
@@ -426,7 +426,7 @@ ggplot(full %>% filter(set=="train"), aes(Pclass, fill=Survived)) +
 <img src="/img/3.png"></img>
 
 
-#### Sex {-}
+#### Sex {-} 与存活率之间关系 
 ```r
 ggplot(full %>% filter(set=="train"), aes(Sex, fill=Survived)) +
   geom_bar(position = "fill") +
@@ -440,7 +440,7 @@ ggplot(full %>% filter(set=="train"), aes(Sex, fill=Survived)) +
 <img src="/img/4.png"></img>
 
 
-#### Age {-}
+#### Age {-} 与存活率之间关系
 ```r
 tbl_age <- full %>%
   filter(set=="train") %>%
@@ -462,7 +462,7 @@ ggplot(full %>% filter(set=="train"), aes(Age, fill=Survived)) +
 <img src="/img/5.png"></img>
 
 
-#### Age Groups {-}
+#### Age Groups {-} 与存活率之间关系
 ```r
 ggplot(full %>% filter(set=="train" & !is.na(Age)), aes(`Age Group`, fill=Survived)) +
   geom_bar(position = "fill") +
@@ -476,7 +476,7 @@ ggplot(full %>% filter(set=="train" & !is.na(Age)), aes(`Age Group`, fill=Surviv
 <img src="/img/6.png"></img>
 
 
-#### SibSp {-}
+#### SibSp {-} 与存活率之间关系
 ```r
 ggplot(full %>% filter(set=="train"), aes(SibSp, fill=Survived)) +
   geom_bar(position = "fill") +
@@ -490,7 +490,7 @@ ggplot(full %>% filter(set=="train"), aes(SibSp, fill=Survived)) +
 <img src="/img/7.png"></img>
 
 
-#### Parch {-}
+#### Parch {-} 与存活率之间关系
 ```r
 ggplot(full %>% filter(set=="train"), aes(Parch, fill=Survived)) +
   geom_bar(position = "fill") +
@@ -504,7 +504,7 @@ ggplot(full %>% filter(set=="train"), aes(Parch, fill=Survived)) +
 <img src="/img/8.png"></img>
 
 
-#### Embarked {-}
+#### Embarked {-} 与存活率之间关系
 ```r
 ggplot(full %>% filter(set=="train"), aes(Embarked, fill=Survived)) +
   geom_bar(position = "fill") +
@@ -518,7 +518,7 @@ ggplot(full %>% filter(set=="train"), aes(Embarked, fill=Survived)) +
 <img src="/img/9.png"></img>
 
 
-#### Title {-}
+#### Title {-} 与存活率之间关系
 ```r
 ggplot(full %>% filter(set=="train") %>% na.omit, aes(title, fill=Survived)) +
   geom_bar(position="fill") +
@@ -533,7 +533,7 @@ ggplot(full %>% filter(set=="train") %>% na.omit, aes(title, fill=Survived)) +
 <img src="/img/10.png"></img>
 
 
-#### Family {-}
+#### Family {-} 与存活率之间关系
 ```r
 ggplot(full %>% filter(set=="train") %>% na.omit, aes(`FamilySize`, fill=Survived)) +
   geom_bar(position="fill") +
@@ -548,7 +548,7 @@ ggplot(full %>% filter(set=="train") %>% na.omit, aes(`FamilySize`, fill=Survive
 <img src="/img/11.png"></img>
 
                                                                                                                                                                                                                                                                                           
-### 通过查看每个标签得到变量频率的不同的关系
+## 通过查看每个标签得到变量频率的不同的关系
 
 #### Pclass {-}
 ```r
@@ -673,7 +673,7 @@ ggplot(full %>% filter(set=="train") %>% na.omit, aes(`FamilySize`, fill=Survive
 <img src="/img/20.png"></img>
 
 
-### 变量之间的交互关系
+## 变量之间的相互关系
 
 #### 相关图
 问：什么是Correlation Plot相关图  
@@ -733,7 +733,7 @@ alluvial(tbl_summary[, c(1:4)],
 <img src="/img/23.png"></img>
 
 
-### 机器学习算法
+# 机器学习算法
 问：啥是机器学习  
 答：机器学习是人工智能（AI）的一个应用，它提供了系统的自动学习和改进的能力，而不需要明确的程序设计。 机器学习侧重于可以访问数据并使用它自己学习的计算机程序的开发。  
 
@@ -795,7 +795,7 @@ round(prop.table(table(test_val$Survived)*100),digits = 1)
 通过每个标签查看不同的算法  
 预测分析和交叉验证  
 
-## -------------------------------------------------------模型训练-----------------------------------------------------
+## --------------------------------------------模型训练------------------------------------
 ### Decison tree {-}
 #--------------------------决策树----------------------------------------------------
 ```r
