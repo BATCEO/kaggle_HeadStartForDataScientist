@@ -1309,18 +1309,14 @@ table(test_val1$Survived,test.probs>0.5)
 #--------------------------------------------------------------------------------------
 ### --机器学习算法评估
 
-Accuracy with **Random Forest**                  - 84.03%                                                                                                                                                                
-Accuracy with **Dession trees**                  - 83.75%                                                                                                                                                                                                                                                                                                                                  
-Accuracy with **Radial Support vector Machine**  - 81.92% 
-Accuracy with **lasso-ridge regression**         - 81.90%                                                                                                                                                                                                                                                                                                                                  
-Accuracy with **Linear Support vector Machine**  - 81.36%                                                                                                                                                                
-Accuracy with **Logistic Regression**            - 81.36%                                                                                                                                                                
-
-
-                                                                                                                                                            
+Accuracy with **Random Forest**                  - 84.03%   使用随机森林的正确率为       84.03%  
+Accuracy with **Dession trees**                  - 83.75%   使用决策树的正确率为	       83.75%  
+Accuracy with **Radial Support vector Machine**  - 81.92%   使用支持向量机的正确率为     81.92%      
+Accuracy with **lasso-ridge regression**         - 81.90%   使用lasso-ridge的正确率为   81.90%  
+Accuracy with **Linear Support vector Machine**  - 81.36%   使用线性支持向量机的正确率为 81.36%  
+Accuracy with **Logistic Regression**            - 81.36%   使用逻辑回归的正确率为       81.36%                                                                                                                                                                      
 问：哇 随机森林可以达到84.03%的准确率  
-答：嗯                                                                                                                                                                                                           
-                                                  
+答：嗯                                                                                                                                                                                                                                                            
 问：非常感谢你 James            
 答：不客气  
 **Please excuse any typos.**   
