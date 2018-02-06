@@ -8,13 +8,12 @@ output:
     fig_width: 7
     code_folding: show
 ---
-
+[原文地址](https://www.kaggle.com/hiteshp/head-start-for-data-scientist)
 
 ```r
 #--显示R代码  knitr包的opts_chunk$set()函数可以配置 隐藏或者显示代码 
 knitr::opts_chunk$set(echo=TRUE)
 ```
-
 
 早期，当我是一个机器学习的新手  
 我曾经不知所措，比如选择语言进行编码，选择正确的在线课程，或选择正确的算法。  
@@ -547,8 +546,8 @@ ggplot(full %>% filter(set=="train") %>% na.omit, aes(`FamilySize`, fill=Survive
 ```
 <img src="/img/11.png"></img>
 
-                                                                                                                                                                                                                                                                                          
-## 通过查看每个标签得到变量频率的不同的关系
+                                                                                                                                          
+## 变量与存活率之间的关系
 
 #### Pclass {-}
 ```r
@@ -1327,4 +1326,5 @@ Accuracy with **Logistic Regression**            - 81.36%
 **Please excuse any typos.**   
 **Thanks for reading. If you have any feedback,suggestions I'd love to hear! .**                                                                                                      
 **Please like the kernel. Your likes are my motivation. ;) **  
-#巴拉巴拉巴拉  期待你的反馈  
+#巴拉巴拉巴拉  期待你的反馈  
+
